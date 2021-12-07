@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureShare</title>
+</head>
+<body>
+    <!-- 
+        Resource Group: SecureShare
+        storage a/c name: securesharegg
+        container: securesharecc
+        service: secureshare.azurewebsites.net Node 12 LTS
+        functionapp: securesharegg.azurewebsites.net Node 14 LTS
+        functionurl: HTTPTrigger1: https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==
+        HTTPTrigger1: Upload File
+
+        SQl Server name: securesharess
+        Server Admin name: secureshare
+        SQL pass: Vijayalaxmi@0897
+    -->
+    <!-- UPLOAD SECTION -->
+    <h1>File UPLOAD TO AZURE STORAGE BLOB: (CONTAINER: "securesharecc" Function: "HttpTrigger1" Type:"Upload"  ResourceGrp: "SecureShare")</h1>
+    <form method="post" action="https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=upload&name=securesharecc" enctype="multipart/form-data">
+        <label  for="myfile">Select File</label>
+        <input type="file" id="myfile" name="filename"><br><br>
+        <input type="submit">
+    </form>
+    <!-- NEW GROUP CREATION SECTION -->
+    <h1>CREATE A GROUP IN AZURE STORAGE BLOB: (CONTAINER: "write_new_group_name" Function: "HttpTrigger1" Type:"Create" ResourceGrp: "SecureShare")</h1>
+    <form method="post" id="new_group_form"  enctype="multipart/form-data">
+        <label  for="new_group_name">Write Name of the Group:</label>
+        <input type="text" id="new_group_name" name="new_group_name"><br><br>
+        <input type="submit" onClick="return newGroupCreateFunction();">
+    </form>
+    <!-- GROUPA UPLOAD SECTION -->
+    <h1>GROUPA File UPLOAD TO AZURE STORAGE BLOB: (CONTAINER: "groupa" Function: "HttpTrigger1" Type:"Upload"  ResourceGrp: "SecureShare")</h1>
+    <form method="post" action="https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=upload&name=groupa" enctype="multipart/form-data">
+        <label  for="myfile">Select File</label>
+        <input type="file" id="myfile" name="filename"><br><br>
+        <input type="submit">
+    </form>    
+    <!-- ANY GROUP UPLOAD SECTION -->
+    <h1>(ENTER GROUP NAME) File UPLOAD TO AZURE STORAGE BLOB: (CONTAINER: "groupa" Function: "HttpTrigger1" ResourceGrp: "SecureShare")</h1>
+    <form method="post" id="your_group_form"  enctype="multipart/form-data">
+        <label  for="your_group_name">Write Name of Your Group:</label>
+        <input type="text" id="your_group_name" name="your_group_name"><br><br>
+        <label  for="myfile">Select File</label>
+        <input type="file" id="myfile" name="filename"><br><br>
+        <input type="submit" onClick="return yourGroupUploadFunction();">
+    </form>
+    <!-- LIST ALL GROUPS -->
+    <h1>LIST ALL CONTAINERS/GROUPS INSIDE AZURE STORAGE BLOB: ( Function: "HttpTrigger1" ResourceGrp: "SecureShare")</h1>
+    <h1>DELETE GROUP ON AZURE STORAGE BLOB: (CONTAINER: "write" Function: "HttpTrigger1" Type:"Upload"  ResourceGrp: "SecureShare")</h1>
+    <form method="post" id="delete_group_form"  enctype="multipart/form-data">
+        <label  for="delete_group_name">Write Name of the Group:</label>
+        <input type="text" id="delete_group_name" name="delete_group_name"><br><br>
+        <input type="submit" onClick="return deleteGroupCreateFunction();">
+    </form>
+    
+    <h1>DOWNLOAD A FILE FROM AZURE STORAGE BLOB: (GROUP NAME: "write_name" (default: "securesharecc") Function: "HttpTrigger1" Type:"Upload"  ResourceGrp: "SecureShare")</h1>
+    <form method="post" id="download_group_form"  enctype="multipart/form-data">
+        <label  for="download_group_name">Write Name of the Group:</label>
+        <input type="text" id="download_group_name" name="download_group_name"><br><br>
+        <label  for="download_item_name">Write item number of the file to download:</label>
+        <input type="text" id="download_item_name" name="download_item_name"><br><br>
+        <input type="submit" onClick="return downloadGroupCreateFunction();">
+    </form>
+    
+
+    <script>
+        function downloadGroupCreateFunction(){
+            // console.log("change");
+            var download_group_name=document.getElementById("download_group_name").value;
+            // alert(new_group_name);
+            var action_src = "https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=download&name=" + document.getElementsByName("download_group_name")[0].value+"&itemno="+document.getElementsByName("download_item_name")[0].value;
+            var download_group_form = document.getElementById('download_group_form');
+            // alert(action_src);
+            download_group_form.action = action_src;
+            download_group_form.submit();
+        }
+        function deleteGroupCreateFunction(){
+            // console.log("change");
+            var delete_group_name=document.getElementById("delete_group_name").value;
+            // alert(new_group_name);
+            var action_src = "https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=delete&name=" + document.getElementsByName("delete_group_name")[0].value;
+            var delete_group_form = document.getElementById('delete_group_form');
+            // alert(action_src);
+            delete_group_form.action = action_src;
+            delete_group_form.submit();
+        }
+        function newGroupCreateFunction(){
+            // console.log("change");
+            var new_group_name=document.getElementById("new_group_name").value;
+            // alert(new_group_name);
+            var action_src = "https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=create&name=" + document.getElementsByName("new_group_name")[0].value;
+            var new_group_form = document.getElementById('new_group_form');
+            // alert(action_src);
+            new_group_form.action = action_src;
+            new_group_form.submit();
+        }
+        function yourGroupUploadFunction(){
+            // console.log("change");
+            var your_group_name=document.getElementById("your_group_name").value;
+            // alert(your_group_name);
+            var action_src = "https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==&type=upload&name=" + document.getElementsByName("your_group_name")[0].value;
+            var your_group_form = document.getElementById('your_group_form');
+            // alert(action_src);
+            your_group_form.action = action_src;
+            your_group_form.submit();
+        }
+    </script>
+
+</body>
+</html>
