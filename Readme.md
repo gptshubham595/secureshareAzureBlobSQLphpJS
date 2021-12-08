@@ -44,13 +44,13 @@
 
 # Resources name, id and password used
 
- Resource Group: SecureShare
- storage a/c name: securesharegg
- public container: securesharecc (general group)
- service: secureshare.azurewebsites.net Node 12 LTS
- functionapp: securesharegg.azurewebsites.net Node 14 LTS
- functionurl: HTTPTrigger1: https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==
+ - Resource Group: SecureShare
+ - storage a/c name: securesharegg
+ - public container: securesharecc (general group)
+ - service: secureshare.azurewebsites.net Node 12 LTS
+ - functionapp: securesharegg.azurewebsites.net Node 14 LTS
+ - functionurl: HTTPTrigger1: https://securesharegg.azurewebsites.net/api/HttpTrigger1?code=Y/YI0ezHeIYrXbTXYdJ5TyNWSlqaoQyFhUngITUWcRSAMlT/OND6fA==
 
- SQl Server name: securesharess
- Server Admin name: secureshare
- SQL pass: Vijayalaxmi@0897
+ - SQl Server name: securesharess
+ - Server Admin name: secureshare
+ - SQL pass: Vijayalaxmi@0897
