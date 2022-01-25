@@ -12,6 +12,12 @@
 - Posting in a group
 - Deleting a group
 
+<img src="./azure1.png">
+<img src="./azure2.png">
+<img src="./azure3.png">
+<img src="./azure4.png">
+<img src="./azure5.png">
+
 ## LEFT: Authentication part for user and admin using azure SQL (everything is setup in azure portal but coding is left for single php file) 
 
 ## Contains 3 files
